@@ -24,11 +24,11 @@ In a very basic view, Emerginov can be seen a web server to serve multiple PHP/H
 
 To do so, the platform is extended with a **Gateway**.
 
-TODO: mettre une photo/schéma d'une gateway?
+![Image of Emerginov simple](https://raw.githubusercontent.com/arnaudmorinol/emerginov-vnf/master/docs/image1.png)
 
-![Image of Emerginov simple](/docs/archi_reseau.png)
+TODO: mettre une autre photo/schéma d'une gateway?
 
-The gateway can communicate with a telecom network throuhg multiples mecanism:
+The gateway can communicate with a telecom network through multiples mecanism:
 
 * For voice
   * T2/E1 connection
@@ -39,23 +39,56 @@ The gateway can communicate with a telecom network throuhg multiples mecanism:
 
 ## Architecture
 ### Functional architecture
-TODO : mettre le schéma de la page 4 emerginov presentation light
+
+![Image of Emerginov functions](https://raw.githubusercontent.com/arnaudmorinol/emerginov-vnf/master/docs/image3.png)
+
 ### Simple flow architecture
-TODO: mettre schéma archi_dev_simple.png
+
+![Image of Emerginov architecture](https://raw.githubusercontent.com/arnaudmorinol/emerginov-vnf/master/docs/archi_dev_simple.png)
 
 ### Software architecture
-TODO : mettre un schéma ou on retrouve les principaux softs dans des VM, idéalement avec les flux entre les softs
-
-TODO : mettre aussi un schéma des VM pour les identifier
+![Image of Emerginov architecture](https://raw.githubusercontent.com/arnaudmorinol/emerginov-vnf/master/docs/archi_vm.png)
 
 ### Gateway
 
 ## Installation
-5 machines to deploy through puppet
-Need 2 networks (pub & priv)
-automatic deployment
-quand meme besoin d'ordonner un peu
-faire un fichier de conf
-voir pour le healing
-voir pour le dimensionnement et l'intégration de nouvelles machines
-ca va etre rigolo ya un peu de conf à faire
+
+Full install is on: http://emerginov.ow2.org/xwiki/bin/view/Support/Installation+Guide+Standard
+
+### Procedure
+1. Start by deploying Gardien:
+ * Add a Personal Package Archive from Launchpad
+ * Install emerginov-master package
+ * Run emerginov-update (automation needed)
+ * Run emerginov-init (automation needed)
+ * Edit config file (automation needed)
+ * Install emerginov-agent
+ * Run emerginov-apply
+ * Sign certificate with puppet (automation needed)
+ * Run again emerginov-apply
+1. Continue with Routing
+ * Install emerginov-agent
+ * Run emerginov-apply
+ * Sign certificate with puppet (automation needed)
+ * Run again emerginov-apply
+1. Then dev
+ * idem as routing
+1. Then content
+ * idem as routing
+1. Then gateway
+ * idem as routing
+1. Test
+
+### Needs
+* Need 2 networks 
+ * Public on routing
+ * Private on all machines
+
+### Orchestration possibility
+#### Scale
+* Add a Dev VM to have more projects in the emerginov platform
+ * Need some configuration in content and routing
+
+#### Heal
+To be conforted
+
